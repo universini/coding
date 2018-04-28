@@ -104,13 +104,13 @@ void add_node (node **n, int i)
 int hasdup (node *n)
 {
     node *t1 = n;
-    node *t2 = n;
+    node *t2 = n->next;
 
     while (t1 && t2 && t2->next) {
-        t1 = t1->next;
-        t2 = t2->next->next;
-
         if (t1 == t2) return (1);
+
+        t1 = t1->next;
+        t2 = t2->next;
     }
 
     return (0);
@@ -126,7 +126,7 @@ int main (void)
     }
 
     /* add dup */
-    add_node (&n, 10);
+    add_node (&n, 5);
 
     printf ("\noriginal linked list: ");
 
@@ -140,9 +140,9 @@ int main (void)
 
     delete_dup (&n);
 
-    print_list (n);
-
     printf ("deleted duplicate num\n");
+
+    print_list (n);
 
     printf ("enter number to be deleted: ");
 
@@ -152,9 +152,7 @@ int main (void)
 
     print_list (n);
 
-    //n->next->next->next = n;
-
-    printf ("hasdup: %s\n", hasdup(n)?"true":"false");
+    printf ("has duplicate ptr: %s\n", hasdup(n)?"true":"false");
 
     return (0);
 }

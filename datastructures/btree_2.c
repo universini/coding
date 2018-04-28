@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <limits.h>
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define false 0
+#define true 1
 
 struct b_tree {
     struct b_tree *left;
@@ -11,12 +14,65 @@ struct b_tree {
 
 typedef struct b_tree btree;
 
+void swap_nodes (btree *root)
+{
+    btree *temp;
+
+    if (!root) return;
+    else {
+        temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+
+        swap_nodes (root->left);
+        swap_nodes (root->right);
+    }
+}
+
+int is_btree_1 (btree *root)
+{
+    if (!root) return true;
+
+    if (root->left != NULL &&
+        root->left->data > root->data) {
+        return false;
+    }
+
+    if (root->right != NULL &&
+        root->right->data < root->data) {
+        return false;
+    }
+
+    if (!is_btree_1 (root->left) ||
+        !is_btree_1 (root->right)) {
+        return false;
+    }
+
+    return true;
+}
+
+int is_btree_2 (btree *root, int min, int max)
+{
+    if (!root) return true;
+
+    if (root->data < min && root->data > max) {
+        return false;
+    }
+
+    if (is_btree_2 (root->left, min, root->data) &&
+        is_btree_2 (root->right, root->data, max)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 int height (btree *node)
 {
     if (node == NULL)
-        return (0);
+        return (-1);
     else
-        return(MAX(height(node->left), height(node->right)) + 1);
+        return(MAX (height (node->left), height (node->right)) + 1);
 }
 
 int find_min (btree *node)
@@ -118,6 +174,15 @@ int main (void)
     
     printf ("min: %d and max: %d\n", find_min(node), find_max(node));
     printf ("height: %d\n", height(node));
+
+    printf ("is_btree_1: %s\n", is_btree_1(node) ? "BST" : "Not a BST");
+    printf ("is_btree_2: %s\n", is_btree_2(node, INT_MIN, INT_MAX) ?
+                                           "BST" : "Not a BST");
+    swap_nodes (node);
+
+    printf ("\n");
+    inorder (node);
+    printf ("\n");
 
     return (0);
 }

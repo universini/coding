@@ -39,7 +39,7 @@ btree_t *btree_find_min (btree_t *root)
 	if (!root) {
 		return (root);
 	} else {
-		return (btree_find_min(root->right));
+		return (btree_find_min(root->left));
 	}
 }
 
