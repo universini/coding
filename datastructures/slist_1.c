@@ -21,6 +21,23 @@ void print_list (node *n)
     return;
 }
 
+node *split_half (node *s)
+{
+    node *slow = s;
+    node *fast = s;
+    node *second;
+
+    while (fast->next->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    second = slow->next;
+    slow->next = NULL;
+
+    return(second);
+}
+
 void delete_dup (node **s)
 {
     node *t = *s;
@@ -56,6 +73,19 @@ void reverse_list (node **n)
     *n = r;
 
     return;
+}
+
+node* search_node (node *n, int i)
+{
+	if (n == NULL) {
+		return (n);
+	}
+
+	if (n->num == i) {
+		return (n);
+	} else {
+		return (search_node(n->next, i));
+	}
 }
 
 void delete_node (node **n, int i)
@@ -118,10 +148,10 @@ int hasdup (node *n)
 
 int main (void)
 {
-    node *n = NULL;
+    node *s, *n = NULL;
     int   i;
 
-    for (i=1; i<=5; i++) {
+    for (i=1; i<=15; i++) {
         add_node (&n, i);
     }
 
@@ -138,18 +168,27 @@ int main (void)
 
     print_list (n);
 
-    delete_dup (&n);
+    //delete_dup (&n);
+    //printf ("after deleting duplicate num: ");
+    //print_list (n);
 
-    printf ("deleted duplicate num\n");
+    printf ("enter number to be searched: ");
+    scanf ("%d", &i);
+    s = search_node (n, i);
+    if (!s) {
+		printf ("number %d not found\n", i);
+	} else {
+		printf ("number searched: %d\n", s->num);
+	}
+
+    s = split_half(n);
 
     print_list (n);
+    print_list (s);
 
     printf ("enter number to be deleted: ");
-
     scanf ("%d", &i);
-
     delete_node (&n, i);
-
     print_list (n);
 
     printf ("has duplicate ptr: %s\n", hasdup(n)?"true":"false");
