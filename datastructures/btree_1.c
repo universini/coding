@@ -43,6 +43,23 @@ btree_t *btree_find_min (btree_t *root)
 	}
 }
 
+btree_t *btree_find_node (btree_t *root, int data)
+{
+    if (!root) {
+        return (root);
+    } else {
+        if (root->data == data) {
+            return (root);
+        } else {
+            if (data < root->data) {
+                btree_find_node(root->left, data);
+            } else {
+                btree_find_node(root->right, data);
+            }
+        }
+    }
+}
+
 btree_t *btree_delete (btree_t *root,
 					   int      data)
 {
@@ -135,7 +152,7 @@ void btree_insert (btree_t **root,
 
 int main (void)
 {
-    btree_t *root = NULL;
+    btree_t *n, *root = NULL;
     int      i;
 
     btree_insert(&root, 26);
@@ -159,6 +176,9 @@ int main (void)
     printf("\n");
     btree_postorder(root);
     printf("\n");
+
+    n = btree_find_node(root, 56);
+    printf("Found: %d\n", n->data);
 
     root = btree_delete(root, 29);
     btree_inorder(root);
