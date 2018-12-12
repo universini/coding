@@ -11,6 +11,21 @@ struct queue {
 
 typedef struct queue node;
 
+int is_cqueue (node *f)
+{
+    node *s = f;
+
+    if (!f) {
+        return(1);
+    }
+
+    while (s && (s != f)) {
+        s = s->next;
+    }
+
+    return(s == f);
+}
+
 void print_queue (node *f)
 {
     node *t1 = f;
@@ -57,9 +72,11 @@ int main (void)
         add_node (&f, &r, i);
     }
 
-    printf ("\nqueue: ");
+    printf ("queue: ");
 
     print_queue (f);
+
+    printf("%s\n", is_cqueue(f) ? "circular" : "not a circular");
 
     return (0);
 }
