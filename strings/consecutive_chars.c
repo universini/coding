@@ -38,5 +38,7 @@ int main(void)
 	t = cons_chars(s);
 	printf("%s\n", t);
 
+	free(t);
+
 	return(0);
 }
