@@ -14,10 +14,7 @@ int main (void)
     //for (i=0; i<(ls-lt); i++) { /* both works */
     for (i=0; i<ls; i++) {
         j = 0;
-        while ((j<lt) &&
-               s[i+j] == t[j]) {
-            j++;
-        }
+        while ((j<lt) && s[i+j] == t[j++]);
 
         if (j == lt) {
             printf("index: %d\n", i);
