@@ -4,10 +4,9 @@
 
 char *cons_chars(const char *s)
 {
-	int count;
+	unsigned long count;
 	int i, j = 1, k = 0;
 	char *t;
-	char c[10];
 
 	count = 1;
 
@@ -17,9 +16,10 @@ char *cons_chars(const char *s)
 		if (*(s+i) == *(s+j)) {
 			count++;
 		} else {
-			sprintf(c,"%d", count);
+			char cnt[32];
+			sprintf(cnt,"%lu", count);
 			*(t+k++) = *(s+i);
-			strcpy((t+k++), c);
+			strcpy((t+k++), cnt);
 			count = 1;
 		}
 		j++;
