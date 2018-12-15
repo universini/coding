@@ -13,7 +13,7 @@ char *cons_chars(const char *s)
 
 	t = (char *) malloc(strlen(s)*sizeof(char));
 
-	for (i=0; i<strlen(s)-1; i++) {
+	for (i=0; i<strlen(s); i++) {
 		if (*(s+i) == *(s+j)) {
 			count++;
 		} else {
@@ -25,10 +25,6 @@ char *cons_chars(const char *s)
 		j++;
 	}
 
-	/* copy the last char */
-	sprintf(c,"%d", count);
-	*(t+k++) = *(s+i);
-	strcpy((t+k++), c);
 	t[k] = '\0';
 
 	return(t);
