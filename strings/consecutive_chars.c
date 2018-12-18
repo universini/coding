@@ -5,7 +5,7 @@
 char *cons_chars(const char *s)
 {
 	unsigned long count;
-	int i, j = 1, k = 0;
+	unsigned long i, j = 1, k = 0;
 	char *t;
 
 	count = 1;
