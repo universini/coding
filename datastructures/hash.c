@@ -5,15 +5,15 @@
 #define HASH_TABLE_SIZE 101
 
 typedef struct hash_node_s {
-	struct hash_node_s	*next;
-	char		 name[10];
-	int			 age;
+	struct hash_node_s *next;
+	char                name[10];
+	int                 age;
 } hash_node_t;
 
 typedef struct hash_tbl_s {
-	hash_node_t		**buckets;
-	int				  count;
-	int				  size;
+	hash_node_t **buckets;
+	int           count;
+	int           size;
 } hash_table_t;
 
 hash_node_t *get_new_node(const char *name, const int age)
