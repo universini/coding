@@ -8,7 +8,7 @@
 typedef struct q_node_s {
 	struct q_node_s	*next;
 	struct q_node_s	*prev;
-	int				 q_item;
+	int    q_item;
 } q_node_t;
 
 typedef struct q_s {
@@ -69,6 +69,7 @@ q_t *create_q(void)
 	if (q) {
 		q->front = NULL;
 		q->rear = NULL;
+		q->count = 0;
 		q->q_size = QUEUE_SIZE;
 	}
 
