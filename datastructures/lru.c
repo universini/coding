@@ -8,11 +8,7 @@
 typedef struct q_node_s {
 	struct q_node_s	*next;
 	struct q_node_s	*prev;
-<<<<<<< HEAD
-	int    q_item;
-=======
 	int q_item;
->>>>>>> 0b82c6da2531dedc04720fa59f576f9b1fb544d3
 } q_node_t;
 
 typedef struct q_s {
