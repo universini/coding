@@ -8,25 +8,29 @@
 typedef struct q_node_s {
 	struct q_node_s	*next;
 	struct q_node_s	*prev;
+<<<<<<< HEAD
 	int    q_item;
+=======
+	int q_item;
+>>>>>>> 0b82c6da2531dedc04720fa59f576f9b1fb544d3
 } q_node_t;
 
 typedef struct q_s {
-	q_node_t	*front;
-	q_node_t	*rear;
-	int			 q_size;
-	int			 q_count;
+	q_node_t *front;
+	q_node_t *rear;
+	int q_size;
+	int q_count;
 } q_t;
 
 typedef struct hash_s {
-	q_node_t	**q_nodes;
-	int			  hash_items;
+	q_node_t **q_nodes;
+	int hash_items;
 } hash_t;
 
 int is_q_empty(q_t *q)
 {
 	return(q->front == NULL &&
-		   q->rear == NULL);
+	q->rear == NULL);
 }
 
 int is_q_full(q_t *q)
