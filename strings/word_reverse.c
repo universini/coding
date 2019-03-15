@@ -3,7 +3,7 @@
 
 void word_reverse(char s[])
 {
-	int l = strlen(s) - 1;
+	int l = strlen(s);
 
 	while(l--) {
 		if (*(s+l) == ' ') {
