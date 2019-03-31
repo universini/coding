@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<malloc.h>
+#include<stdlib.h>
 
 typedef struct node_s {
 	struct node_s *next;
@@ -25,6 +25,22 @@ node_t *getnode(int n)
 	t->next = NULL;
 
 	return(t);
+}
+
+node_t *reverse(node_t *n)
+{
+    node_t *t;
+    node_t *r = NULL;
+
+    while (n != NULL) 
+    { 
+        t = n->next; 
+        n->next = r; 
+        r = n; 
+        n = t; 
+    } 
+
+    return(r);
 }
 
 node_t *merge_lists(node_t *n1, node_t *n2)
@@ -60,6 +76,9 @@ int main(void)
 
 	n3 = merge_lists(n1, n2);
 	print_list(n3);
+	printf("\n");
+
+	print_list(reverse(n3));
 	printf("\n");
 
 	return(0);
