@@ -41,17 +41,19 @@ void btree_dump(btree_t *root)
 
 int btree_diameter(btree_t *root)
 {
-	int height;
-	int width;
+	int left_height, right_height, left_width, right_width;
 
 	if (!root) {
 		return(0);
 	}
 
-	height = btree_height(root);
-	width = MAX(btree_diameter(root->left), btree_diameter(root->right));
+	left_height = btree_height(root->left);
+	right_height = btree_height(root->right);
 
-	return(MAX(height, width));
+	left_width = btree_diameter(root->left);
+	right_width = btree_diameter(root->right);
+
+	return(MAX(1+left_height+right_height, MAX(left_width, right_width)));
 }
 
 int main(void)

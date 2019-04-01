@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <limits.h>
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
@@ -59,12 +59,8 @@ int is_btree_2 (btree *root, int min, int max)
         return false;
     }
 
-    if (is_btree_2 (root->left, min, root->data) &&
-        is_btree_2 (root->right, root->data, max)) {
-        return false;
-    } else {
-        return true;
-    }
+    return (is_btree_2 (root->left, min, root->data) &&
+            is_btree_2 (root->right, root->data, max));
 }
 
 int height (btree *node)
