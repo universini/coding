@@ -46,12 +46,12 @@ int print_ancestors(btree_t *node, int n)
 
 int main(void)
 {
-	btree_t *node = create_node(1);
+	btree_t *node = create_node(4);
 	node->left = create_node(2);
-	node->right = create_node(3);
-	node->left->left = create_node(4);
-	node->left->right = create_node(5);
-	node->left->left->left = create_node(7);
+	node->right = create_node(7);
+	node->left->left = create_node(1);
+	node->left->right = create_node(3);
+	node->right->left = create_node(5);
 
 	print_nodes(node);
 	printf("\n");
