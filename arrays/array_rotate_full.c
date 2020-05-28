@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void reverse(int a[], int start, int end)
+void reverse1(int a[], int start, int end)
 {
 	int temp;
 
@@ -15,7 +15,23 @@ void reverse(int a[], int start, int end)
 
 void rotate (int a[], int size)
 {
-	reverse(a, 0, size);
+	reverse1(a, 0, size);
+}
+
+void reverse2(int a[], int sz)
+{
+	int t, x;
+
+	for (int i=0; i<sz/2; i++) {
+		x = sz-i-1;
+		t = a[i];
+		a[i] = a[x];
+		a[x] = t;
+	}
+
+	for (int i=0; i<sz; i++) {
+		printf("%d ", a[i]);
+	}
 }
 
 int main(void)
@@ -29,6 +45,8 @@ int main(void)
 		printf("%d ", a[i]);
 	}
 
+    printf("\n");
+	reverse2(a, 5);
     printf("\n");
 
 	return(0);
