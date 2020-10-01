@@ -1,14 +1,8 @@
 #include<stdio.h>
 
-#define BIT_REV(x) (((x) & 0xff000000) >> 24 | \
-                    ((x) & 0x00ff0000) >> 8  | \
-                    ((x) & 0x0000ff00) << 8  | \
-                    ((x) & 0x000000ff) << 24)
-
 #define CHAR_BITS  8  // size of character
 #define INT_BITS   (sizeof(int) * CHAR_BITS)
 
-						
 void print_power(void)
 {
 	int i=0;
