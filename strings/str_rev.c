@@ -27,6 +27,21 @@ void rev_str_rec (char *s, int start, int end)
 	rev_str_rec(s, ++start, --end);
 }
 
+void rev_str_bitwise(char *s)
+{
+	char *start = s;
+	char *end = s + strlen(s)-1;
+
+	while(start < end) {
+		*start ^= *end;
+		*end   ^= *start;
+		*start ^= *end;
+
+		start++;
+		end--;
+	}
+}
+
 int main (void)
 {
     char s[]="sidde gowda";
@@ -36,6 +51,8 @@ int main (void)
     printf ("reversed: %s\n", s);
     rev_str_rec(s, 0, strlen(s)-1);
     printf ("original: %s\n", s);
+    rev_str_bitwise(s);
+    printf ("reversed: %s\n", s);
 
     return (0);
 }
