@@ -1,0 +1,55 @@
+# Test Inputs: input.yaml
+# - leverage host machine (Linux) yaml engine to process yaml input
+#   from cpp file.
+
+# Test Scenario 1:
+#	- Hikers: 4
+#	- Bridge Length: 100ft
+#	- Crossing Speeds in ft/min: A-100, B-50, C-20, D-10
+
+--- 
+iteration: 
+  case: 1
+  num_hikers: 4
+  bridge_length: 100
+  walk_speed: 
+    - 100
+    - 20
+    - 50
+    - 10
+
+# Test Scenario 2:
+#	- Hikers: 5
+#	- Bridge Length: 250ft
+#	- Crossing Speeds in ft/min: A-100, B-50, C-20, D-10, E-2.5
+
+--- 
+iteration: 
+  case: 2
+  num_hikers: 5
+  bridge_length: 250
+  walk_speed: 
+    - 100
+    - 50
+    - 20
+    - 10
+    - 2.5
+    
+# Test Scenario 3:
+#	- Hikers: 7
+#	- Bridge Length: 150ft
+#	- Crossing Speeds in ft/min: A-100, B-50, C-20, D-10, E-2.5, F-25, G-15
+
+--- 
+iteration: 
+  case: 3
+  num_hikers: 7
+  bridge_length: 150
+  walk_speed: 
+    - 100
+    - 50
+    - 20
+    - 10
+    - 2.5
+    - 25
+    - 15

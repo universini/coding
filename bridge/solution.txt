@@ -1,0 +1,106 @@
+Solution Analysis:
+
+Allow 2 faster persons to cross the bridge. So, 1 faster person can get the torch
+back quickly and 1 can stay at another end. Allow 2 slower persons to cross the
+bride and get the faster person staying at the other end to back. Allow 2 faster
+person now to cross the bridge.This way they can cross in minimum time.
+
+Solution:
+
+First sort the inputs (distance) in all instances and then use analysis suggested above
+
+Iteration 1: 100ft long
+=======================
+
+	A->100 	ft/min ->  1.0 min
+	B->50	ft/min ->  2.0 min
+	C->20	ft/min ->  5.0 min
+	D->10	ft/min -> 10.0 min
+
+	Sort: 1->2->5->10
+
+	Send A & B to other side and bring back A
+		Left: A+C+D	Right: B
+
+	Then send C & D to other side and bring back B
+		Left: A+B	RIght: C+D
+
+	Now, send A & B
+		Left: None	Right: A+B+C+D
+
+Iteration 2: 250ft long
+=======================
+
+	A->100 	ft/min ->   2.5 min
+	B->50	ft/min ->   5.0 min
+	C->20	ft/min ->  12.5 min
+	D->10	ft/min ->  25.0 min
+	E->2.5	ft/min -> 100.0 min
+
+	Sort: 2.5->5->12.5->25->100
+
+	Send A & B to other side and bring back A
+		Left: A+C+D+E	Right: B
+
+	Send A & C to other side and bring back A
+		Left: A+D+E	RIght: B+C
+
+	Then, send D & E and bring back B
+		Left: A+B	Right: C+D+E
+
+	Now, send A & B
+		Left: None	Right: A+B+C+D+E
+
+Iteration 3: 150ft long
+=======================
+	A->100 	ft/min ->  1.5 min
+	B->50	ft/min ->  3.0 min
+	C->20	ft/min ->  7.5 min
+	D->10	ft/min -> 15.0 min
+	E->2.5	ft/min -> 60.0 min
+	F->25	ft/min ->  6.0 min
+	G->15	ft/min -> 10.0 min
+
+	Sort: 1.5->3->6->7.5->10->15->60
+
+	Send A & B to other side and bring back A
+		Left: A+C+D+E+F+G	Right: B
+
+	Send A & F to other side and bring back A
+		Left: A+C+D+E+G		RIght: B+F
+
+	Send A & C to other side and bring back A
+		Left: A+D+E+G		Right: B+C+F
+
+	Send A & G to other side and bring back A
+		Left: A+D+E	Right: B+C+F+G
+
+	Then, send D & E to other side and bring back B
+		Left: A+B	Right: C+D+E+F+G
+
+	Now, send A & B
+		Left: None	Right: A+B+C+D+E+F+G
+
+and so on ...
+
+Approach followed
+=================
+ 1. build hiker info using input data
+ 2. pass this info to backend to process
+ 3. store hiker speed in c++ vector for easy access later
+ 4. convert speed into time by dividing bridge length/speed to get time in mins
+ 5. construct vector of time obtained from above step
+ 6. create a class instance using sets to store time in sorted order
+ 7. now set of time can be pushed to priority queue
+ 8. pop first entry and process in two steps:
+      - hikers moving from left ro right side of the bridge (max of 2 hikers time)
+      - hiker from right to left to carry torch (minimum element from set)
+ 9. add time from both iterations above to find per instance time taken
+10. keep a global counter to add from all the instances
+11. display the output
+
+Other way
+=========
+1. this can be constructed using graph data structure with cost in each direction
+2. can maintain some kind of bit mask to indicate left and right status
+3. shortest path first algorithm can be used to compute minimum time
