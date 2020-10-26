@@ -1,0 +1,93 @@
+Analysis:
+
+Allow 2 faster persons to cross the bridge. So, 1 faster person can get the torch
+back quickly and 1 can stay at another end. Allow 2 slower persons to cross the
+bride and get the faster person staying at the other end to back. Allow 2 faster
+person now to cross the bridge.This way they can cross in minimum time.
+
+Solution:
+
+First sort the inputs (distance) in all instances and then use analysis suggested above
+
+Iteration 1: 100ft long
+=======================
+
+1+2 = 3
+1+5 = 6
+1+10= 10
+	A->100 	ft/min ->  1.0 min
+	B->50	ft/min ->  2.0 min
+	C->20	ft/min ->  5.0 min
+	D->10	ft/min -> 10.0 min
+
+	Sort: 1->2->5->10
+
+	Send A & B to other side and bring back A which is 2+1=3
+		Left: A+C+D	Right: B
+
+	Then send C & D to other side and bring back B which is 10+2=12
+		Left: A+B	RIght: C+D
+
+	Now, send A & B which is 2
+		Left: None	Right: A+B+C+D
+
+	So total time taken is 3+12+2= 17 min
+
+Iteration 2: 250ft long
+=======================
+
+	A->100 	ft/min ->   2.5 min
+	B->50	ft/min ->   5.0 min
+	C->20	ft/min ->  12.5 min
+	D->10	ft/min ->  25.0 min
+	E->2.5	ft/min -> 100.0 min
+
+	Sort: 2.5->5->12.5->25->100
+
+	Send A & B to other side and bring back A which is 5+2.5=7.5
+		Left: A+C+D+E	Right: B
+
+	Send A & C to other side and bring back A which is 12.5+2.5=15
+		Left: A+D+E	RIght: B+C
+
+	Then, send D & E and bring back B which is 100+5=105
+		Left: A+B	Right: C+D+E
+
+	Now, send A & B which is 5
+		Left: None	Right: A+B+C+D+E
+
+	So total time taken is 7.5+15+105+5= 132.5
+
+Iteration 3: 150ft long
+=======================
+	A->100 	ft/min ->  1.5 min
+	B->50	ft/min ->  3.0 min
+	C->20	ft/min ->  7.5 min
+	D->10	ft/min -> 15.0 min
+	E->2.5	ft/min -> 60.0 min
+	F->25	ft/min ->  6.0 min
+	G->15	ft/min -> 10.0 min
+
+	Sort: 1.5->3->6->7.5->10->15->60
+
+	Send A & B to other side and bring back A which is 3+1.5=4.5
+		Left: A+C+D+E+F+G	Right: B
+
+	Send A & F to other side and bring back A which is 6+1.5=7.5
+		Left: A+C+D+E+G		RIght: B+F
+
+	Send A & C to other side and bring back A which is 7.5+1.5=9
+		Left: A+D+E+G		Right: B+F+C
+
+	Send A & G to other side and bring back A which is 10+1.5=11.5
+		Left: A+D+E	Right: B+F+C+G
+
+	Then, send D & E to other side and bring back B which is 60+15=63
+		Left: A+B	Right: C+D+E+F+G
+
+	Now, send A & B which is 3
+		Left: None	Right: A+B+C+D+E+F+G
+
+	So total time taken is 4.5+7.5+9+11.5+63+3= 98.5
+
+and so on ...

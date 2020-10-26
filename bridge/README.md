@@ -1,11 +1,13 @@
 Build and run instructions:
+===========================
 
-Download files from bridge directory or git clone will clone my entire public repository
+This folder has two approaches in two separate folders such as solution_1 & solution_2. Both solutions have different logic in chosing hikers from one side to another.
 
-If you clone entire repository, cd to bridge folder and follow below instructions
+In order to build either entire coding repository can be cloned that has all my other programs as well. Else bridge folder only can be downloaded and build files as follows:
 
-make clean (just to cleanup old binaries if any)
+From main folder, rum "make", it will build "bridge" binay
 
-make
+Then "./bridge" will displays the results
 
-./bridge (this is an executable)
+And, "make clean" to clean up obj and executable files
+
