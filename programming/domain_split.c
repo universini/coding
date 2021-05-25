@@ -1,17 +1,16 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
 
 char nt[32];
 
-int main (void)
-{
-    char *t = NULL;
-    char *np = NULL;
-    char  s[]="dyn.sjc.revsw.net";
+int main(void) {
+  char *t = NULL;
+  char *np = NULL;
+  char s[] = "dyn.sjc.revsw.net";
 
-    np = strtok (s, ".");
+  np = strtok(s, ".");
 
-    sprintf (nt, "%s.com", np);
+  sprintf(nt, "%s.com", np);
 
-    puts (nt);
+  puts(nt);
 }

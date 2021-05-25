@@ -1,14 +1,12 @@
-#include<stdio.h>
-#include<malloc.h>
+#include <stdio.h>
+#include <malloc.h>
 
-int main (void)
-{
-    int *p;
+int main(void) {
+  int *p;
 
-    p = malloc (0);
+  p = malloc(0);
 
-    printf ("size: %lu content: %d\n", sizeof(p), *p);
+  printf("size: %lu content: %d\n", sizeof(p), *p);
 
-    return (0);
+  return (0);
 }
-

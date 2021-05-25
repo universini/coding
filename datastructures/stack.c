@@ -2,66 +2,61 @@
 #include <malloc.h>
 
 struct stack {
-    struct stack *next;
-    int          num;
-
+  struct stack *next;
+  int num;
 };
 
 typedef struct stack node;
 
-void print_stack (node *f)
-{
-    while (f != NULL) {
-        printf ("%d->", f->num);
-        f = f->next;
-    }
+void print_stack(node *f) {
+  while (f != NULL) {
+    printf("%d->", f->num);
+    f = f->next;
+  }
 
-    printf ("NULL\n");
+  printf("NULL\n");
 
-    return;
+  return;
 }
 
-void pop_stack (node **n)
-{
-    node *t = *n;
+void pop_stack(node **n) {
+  node *t = *n;
 
-    printf ("%d\n", t->num);
-    *n = (*n)->next;
-    free (t);
+  printf("%d\n", t->num);
+  *n = (*n)->next;
+  free(t);
 
-    return;
+  return;
 }
 
-void add_node (node **n, int i)
-{
-    node *t;
+void add_node(node **n, int i) {
+  node *t;
 
-    t = malloc (sizeof (node));
-    t->num = i;
-    t->next = NULL;
+  t = malloc(sizeof(node));
+  t->num = i;
+  t->next = NULL;
 
-    t->next = *n;
-    *n = t;
+  t->next = *n;
+  *n = t;
 
-    return;
+  return;
 }
 
-int main (void)
-{
-    node *n = NULL;
-    int   i;
+int main(void) {
+  node *n = NULL;
+  int i;
 
-    for (i=1; i<=10; i++) {
-        add_node (&n, i);
-    }
+  for (i = 1; i <= 10; i++) {
+    add_node(&n, i);
+  }
 
-    printf ("\nstack: ");
+  printf("\nstack: ");
 
-    print_stack (n);
+  print_stack(n);
 
-    printf ("\npopped: ");
+  printf("\npopped: ");
 
-    pop_stack (&n);
+  pop_stack(&n);
 
-    return (0);
+  return (0);
 }

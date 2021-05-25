@@ -5,33 +5,28 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-void write_buf (int fd, char *buf, char *str, int *num)
-{
-    int  len = 0;
+void write_buf(int fd, char *buf, char *str, int *num) {
+  int len = 0;
 
-    sprintf (buf, "%d:%s", *num, str);
-    len = strlen (buf);
-    write (fd, buf, len);
+  sprintf(buf, "%d:%s", *num, str);
+  len = strlen(buf);
+  write(fd, buf, len);
 
-    return;
+  return;
 }
 
-int main (void)
-{
-    char buf[16];
-    int  fd;
-    int  num = 1;
-   
-    fd = open ("/tmp/test.log",
-               O_CREAT | O_APPEND | O_RDWR,
-               0666);
+int main(void) {
+  char buf[16];
+  int fd;
+  int num = 1;
 
-    write_buf (fd, buf, "Sidde\r\n", &num);
-    num = 2;
-    write_buf (fd, buf, "Gowda\r\n", &num);
+  fd = open("/tmp/test.log", O_CREAT | O_APPEND | O_RDWR, 0666);
 
-    close (fd);
+  write_buf(fd, buf, "Sidde\r\n", &num);
+  num = 2;
+  write_buf(fd, buf, "Gowda\r\n", &num);
 
-    return 0;
+  close(fd);
+
+  return 0;
 }
-

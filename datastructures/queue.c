@@ -2,72 +2,67 @@
 #include <malloc.h>
 
 struct queue {
-    struct queue *next;
-    int          num;
-
+  struct queue *next;
+  int num;
 };
 
 typedef struct queue node;
 
-void print_queue (node *f)
-{
-    while (f != NULL) {
-        printf ("%d->", f->num);
-        f = f->next;
-    }
+void print_queue(node *f) {
+  while (f != NULL) {
+    printf("%d->", f->num);
+    f = f->next;
+  }
 
-    printf ("NULL\n");
+  printf("NULL\n");
 
-    return;
+  return;
 }
 
-void pop_queue (node **f)
-{
-    node *t = *f;
+void pop_queue(node **f) {
+  node *t = *f;
 
-    printf ("%d\n", t->num);
-    *f = (*f)->next;
-    free (t);
+  printf("%d\n", t->num);
+  *f = (*f)->next;
+  free(t);
 
-    return;
+  return;
 }
 
-void add_node (node **f, node **r, int i)
-{
-    node *t;
+void add_node(node **f, node **r, int i) {
+  node *t;
 
-    t = malloc (sizeof (node));
-    t->num = i;
-    t->next = NULL;
+  t = malloc(sizeof(node));
+  t->num = i;
+  t->next = NULL;
 
-    if (*f == NULL) {
-        *f = t;
-    } else {
-        (*r)->next = t;
-    }
+  if (*f == NULL) {
+    *f = t;
+  } else {
+    (*r)->next = t;
+  }
 
-    *r = t;
+  *r = t;
 
-    return;
+  return;
 }
 
-int main (void)
-{
-    node *f = NULL;
-    node *r = NULL;
-    int   i;
+int main(void) {
+  node *f = NULL;
+  node *r = NULL;
+  int i;
 
-    for (i=1; i<=10; i++) {
-        add_node (&f, &r, i);
-    }
+  for (i = 1; i <= 10; i++) {
+    add_node(&f, &r, i);
+  }
 
-    printf ("\nqueue: ");
+  printf("\nqueue: ");
 
-    print_queue (f);
+  print_queue(f);
 
-    printf ("\npopped: ");
+  printf("\npopped: ");
 
-    pop_queue (&f);
+  pop_queue(&f);
 
-    return (0);
+  return (0);
 }

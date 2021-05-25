@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-int main (void)
-{
-    unsigned int i = 1;
+int main(void) {
+  unsigned int i = 1;
 
-    printf ("this is %s endian\n", (*(char *)&i)?"little":"big");
+  printf("this is %s endian\n", (*(char *)&i) ? "little" : "big");
 
-    return (0);
+  return (0);
 }

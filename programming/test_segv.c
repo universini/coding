@@ -1,12 +1,11 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int main(void)
-{
-    int *a;
+int main(void) {
+  int *a;
 
-    *a = 10;
+  *a = 10;
 
-    printf("Content: %d\n", *a);
+  printf("Content: %d\n", *a);
 
-    return (0);
+  return (0);
 }

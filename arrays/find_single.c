@@ -1,25 +1,22 @@
-#include<stdio.h>
+#include <stdio.h>
 
 /* In a non-empty array every element appears twice except one. Find it */
 
-int find_single(int a[], int size)
-{
-	int num = a[0];
+int find_single(int a[], int size) {
+  int num = a[0];
 
-	for (int i=1; i<size; i++)
-	{
-		 num = num ^ a[i];
-	}
+  for (int i = 1; i < size; i++) {
+    num = num ^ a[i];
+  }
 
-	return(num);
+  return (num);
 }
 
-int main(void)
-{
-	int a[] = {2,2,3,3,4,4,5,6,6};
+int main(void) {
+  int a[] = {2, 2, 3, 3, 4, 4, 5, 6, 6};
 
-	printf("num: %d\n", find_single(a, 9));
-	return(0);
+  printf("num: %d\n", find_single(a, 9));
+  return (0);
 }
 
 /*
