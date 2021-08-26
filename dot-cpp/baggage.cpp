@@ -2,7 +2,7 @@
 #include <stack>
 #include <vector>
 
-#define USE_INLINE 1
+#define USE_INLINE 0
 
 using namespace std;
 
