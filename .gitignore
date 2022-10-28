@@ -2,3 +2,5 @@
 a.out
 .*.swp
 template
+client
+server
