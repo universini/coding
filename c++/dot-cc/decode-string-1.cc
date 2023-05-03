@@ -14,15 +14,15 @@ string decode_string(string str) {
       continue;
     }
 
-    int num_chars = stol(l);
+    int repeat_num = stol(l);
 
 #ifdef ORDER_OF_NSQUARE
-    for (size_t j = 0; j < num_chars; j++) {
+    for (size_t j = 0; j < repeat_num; j++) {
       s.push_back(str[i]);
     }
 #else
-    if (num_chars > 1) {
-      string t(num_chars, str[i]);
+    if (repeat_num > 1) {
+      string t(repeat_num, str[i]);
       s.insert(s.length(), t);
     } else {
       s += str[i];
