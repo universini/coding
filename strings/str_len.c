@@ -3,10 +3,10 @@
 int str_len_1(const char *s) {
   const char *t = s;
 
-  while (*++s)
+  while (*++t)
     ;
 
-  return (s - t);
+  return (t - s);
 }
 
 int str_len_2(const char *s) {

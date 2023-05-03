@@ -19,6 +19,7 @@ class btree {
     n->left = nullptr;
     n->right = nullptr;
     n->data = data;
+    return n;
   }
 
   void insert_node(node **root, int data) {
@@ -69,7 +70,13 @@ int main(void) {
   node *root = nullptr;
   node *lca = nullptr;
   bool ret = false;
-
+  /*
+                10
+            /      \
+          6        14
+        /   \     /    \
+      4      8   12     18
+  */
   bt.insert_node(&root, 10);
   bt.insert_node(&root, 6);
   bt.insert_node(&root, 4);
@@ -88,5 +95,6 @@ int main(void) {
   } else {
     cout << " LCA Doesn't Exist" << endl;
   }
-  return (0);
+
+  return 0;
 }

@@ -20,6 +20,7 @@ class btree {
     n->left = nullptr;
     n->right = nullptr;
     n->data = data;
+    return n;
   }
 
   void insert_node(node **root, int data) {
@@ -77,7 +78,13 @@ class btree {
 int main(void) {
   btree bt;
   node *root = nullptr;
-
+  /*
+                10
+            /      \
+          6        14
+        /   \     /    \
+      4      8   12     18
+  */
   bt.insert_node(&root, 10);
   bt.insert_node(&root, 6);
   bt.insert_node(&root, 4);
@@ -89,4 +96,6 @@ int main(void) {
   cout << "Binary Tree in ZigZag Inorder : ";
   bt.zizag_print(root);
   cout << endl;
+
+  return 0;
 }
