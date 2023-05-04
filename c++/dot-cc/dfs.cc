@@ -21,7 +21,10 @@ G_Node::G_Node(int vertices) {
 }
 
 // Add edges
-void G_Node::addEdge(int src, int dest) { adjLists[src].push_front(dest); }
+void G_Node::addEdge(int src, int dest)
+{
+  adjLists[src].push_front(dest);
+}
 
 // DFS algorithm
 void G_Node::DFS(int vertex) {

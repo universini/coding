@@ -9,6 +9,7 @@ int kth_smallest(vector<int> v, int kth) {
   priority_queue<int> p(v.begin(), v.begin() + kth);
 
   for (size_t i = kth; i < v.size(); i++) {
+    cout << "queue item: " << p.top() << " vector item: " << v[i] << endl;
     if (p.top() > v[i]) {
       p.pop();
       p.push(v[i]);
@@ -20,10 +21,12 @@ int kth_smallest(vector<int> v, int kth) {
 int main(void) {
   vector<int> v{2, 4, 1, 3, 9, 5, 0};
   int k;
+  int kth;
 
   cout << "Enter kth number : ";
   cin >> k;
-  cout << "kth smallest element is : " << kth_smallest(v, k) << endl;
+  kth = kth_smallest(v, k);
+  cout << "kth smallest element is : " << kth << endl;
 
   return 0;
 }
