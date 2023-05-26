@@ -33,9 +33,11 @@ void print_nodes(btree_t *node) {
 int print_ancestors(btree_t *node, int n) {
   if (!node) return (false);
   if (node->data == n) return (true);
-  if (print_ancestors(node->left, n) || print_ancestors(node->right, n)) {
-    printf("%d ", node->data);
-    return (true);
+
+  if (print_ancestors(node->left, n) ||
+      print_ancestors(node->right, n)) {
+      printf("%d ", node->data);
+      return (true);
   }
 
   return (false);

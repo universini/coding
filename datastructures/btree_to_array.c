@@ -37,17 +37,18 @@ int count_nodes(btree_t *root) {
     return (count_nodes(root->left) + count_nodes(root->right) + 1);
 }
 
-int *a, i = 0;
+int i = 0;
 
-void build_array_from_btree(btree_t *root) {
+void build_array_from_btree(btree_t *root, int *arr) {
   if (root == NULL) return;
 
-  build_array_from_btree(root->left);
-  a[i++] = root->data;
-  build_array_from_btree(root->right);
+  build_array_from_btree(root->left, arr);
+  arr[i++] = root->data;
+  build_array_from_btree(root->right, arr);
 }
 
 int main(void) {
+  int *a = NULL;
   int size = 0;
   btree_t *root = create_node(4);
   root->left = create_node(2);
@@ -63,7 +64,7 @@ int main(void) {
   printf("size = %d\n", size);
   a = malloc(size * sizeof(int));
 
-  build_array_from_btree(root);
+  build_array_from_btree(root, a);
 
   for (int i = 0; i < size; i++) printf("%d ", a[i]);
   printf("\n");
