@@ -59,7 +59,7 @@ q_t *create_q(void) {
   if (q) {
     q->front = NULL;
     q->rear = NULL;
-    q->count = 0;
+    q->q_count = 0;
     q->q_size = QUEUE_SIZE;
   }
 
