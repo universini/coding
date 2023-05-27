@@ -147,15 +147,10 @@ int main(void) {
 
   /* add dup */
   add_node(&n, 5);
-
   printf("\noriginal linked list: ");
-
   print_list(n);
-
   reverse_list(&n);
-
   printf("reversed linked list: ");
-
   print_list(n);
 
   // delete_dup (&n);

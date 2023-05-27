@@ -30,6 +30,18 @@ int list_len(node *l) {
   return (c);
 }
 
+node *search_node(node *n, int i) {
+  if (n == NULL) {
+    return (n);
+  }
+
+  if (n->num == i) {
+    return (n);
+  } else {
+    return (search_node(n->next, i));
+  }
+}
+
 node *find_merge_point_node(node *n1, node *n2, int ld) {
   for (int i = 0; i < ld; i++) {
     if (!n1) return (NULL);
@@ -60,18 +72,88 @@ node *find_merge_point(node *n1, node *n2) {
 }
 
 node *split_half(node *s) {
+  node *slow = s;
   node *fast = s;
   node *second;
 
   while (fast->next->next != NULL) {
-    s = s->next;
-    if (fast->next->next) fast = fast->next->next;
+    slow = slow->next;
+    fast = fast->next->next;
   }
 
-  second = s->next;
-  s->next = NULL;
+  second = slow->next;
+  slow->next = NULL;
 
   return (second);
+}
+
+int do_list_has_dup_nodes(node *n) {
+  node *t1 = n;
+  node *t2 = n->next;
+
+  while (t1 && t2 && t2->next) {
+    if (t1 == t2) return (1);
+
+    t1 = t1->next;
+    t2 = t2->next;
+  }
+
+  return (0);
+}
+
+void reverse_list(node **n) {
+  node *r, *s, *q;
+
+  q = *n;
+  r = NULL;
+
+  while (q != NULL) {
+    s = r;
+    r = q;
+    q = q->next;
+    r->next = s;
+  }
+
+  *n = r;
+
+  return;
+}
+
+void delete_dup(node **s) {
+  node *t = *s;
+  node *n;
+
+  while (t->next != NULL) {
+    n = t->next;
+    if (t->num == n->num) {
+      t->next = n->next;
+      free(n);
+    }
+
+    t = t->next;
+  }
+
+  return;
+}
+
+void delete_node(node **n, int i) {
+  node *p, *t = *n;
+
+  if ((*n)->num == i) {
+    *n = (*n)->next;
+    free(t);
+  } else {
+    while (t->next != NULL) {
+      p = t;
+      t = t->next;
+      if (t->num == i) {
+        p->next = t->next;
+        free(t);
+      }
+    }
+  }
+
+  return;
 }
 
 void add_node(node **n, int i) {
@@ -103,7 +185,19 @@ int main(void) {
     add_node(&n, i);
   }
 
+  add_node(&n, i-1); // duplicate entry
   printf("original linked list: \n");
+  print_list(n);
+
+  printf("has dup node: %s\n",
+         do_list_has_dup_nodes(n) ? "true" : "false");
+
+  delete_node(&n, i-1); // duplicate entry
+  printf("modified linked list: \n");
+  print_list(n);
+
+  reverse_list(&n);
+  printf("reversed linked list: \n");
   print_list(n);
 
   s = split_half(n);

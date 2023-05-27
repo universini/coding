@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <stdbool.h>
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define false 0
+#define true 1
 
 typedef struct btree_s {
   struct btree_s *left;
   struct btree_s *right;
   int data;
 } btree_t;
-
-int a[2][2];
 
 void btree_preorder(btree_t *root) {
   if (!root) return;
@@ -33,27 +38,75 @@ void btree_postorder(btree_t *root) {
   printf("%d ", root->data);
 }
 
-int btree_find_min(btree_t *root) {
-  btree_t *node = root;
+int find_min(btree_t *node) {
+  if (node == NULL) return (-1);
 
-  while (node->left) {
+  while (node->left != NULL)
     node = node->left;
-  }
 
   return (node->data);
 }
 
-int btree_find_max(btree_t *root) {
-  btree_t *node = root;
+int find_max(btree_t *node) {
+  if (node == NULL) return (-1);
 
-  while (node->right) {
+  if (node->right != NULL)
     node = node->right;
-  }
 
   return (node->data);
 }
 
-btree_t *btree_find_successor(btree_t *root) {
+int btree_height(btree_t *node) {
+  if (node == NULL)
+    return (-1);
+  else
+    return (MAX(btree_height(node->left),
+                btree_height(node->right)) + 1);
+}
+
+bool is_binary_tree(btree_t* root, int min, int max) {
+  if (!root) return true;
+
+  if (root->data < min && root->data > max) {
+    return false;
+  }
+
+  return (is_binary_tree(root->left, min, root->data) &&
+          is_binary_tree(root->right, root->data, max));
+}
+
+btree_t* btree_find_node(btree_t *root, int data) {
+  if (!root) {
+    return (root);
+  } else {
+    if (root->data == data) {
+      return (root);
+    } else {
+      if (data < root->data) {
+        btree_find_node(root->left, data);
+      } else {
+        btree_find_node(root->right, data);
+      }
+    }
+  }
+}
+
+void swap_btree_nodes(btree_t *root) {
+  btree_t *temp;
+
+  if (!root)
+    return;
+  else {
+    temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    swap_btree_nodes(root->left);
+    swap_btree_nodes(root->right);
+  }
+}
+
+btree_t* btree_find_successor(btree_t *root) {
   if (!root) {
     return (root);
   } else {
@@ -61,7 +114,7 @@ btree_t *btree_find_successor(btree_t *root) {
   }
 }
 
-btree_t *btree_delete(btree_t *root, int data) {
+btree_t* btree_delete(btree_t *root, int data) {
   btree_t *temp;
 
   if (!root) {
@@ -96,25 +149,37 @@ btree_t *btree_delete(btree_t *root, int data) {
   return (root);
 }
 
-void btree_build_array(btree_t *root) {
-  int min, max;
+#ifdef BFT_CQ_READY
+void btree_bft(btree_t *root) {
+  btree_t *temp;
 
-  if (!root) {
+  if (!btree) {
     return;
   }
 
-  min = btree_find_min(root);
-  root = btree_delete(root, min);
-  max = btree_find_max(root);
-  root = btree_delete(root, max);
+  temp = root;
+  q_push(bqueue, temp);
+  while (is_not_empty(bqueue)) {
+    /* Get first node from Q */
+    temp = q_pop(bqueue);
+    printf("%d ", temp->data);
 
-  printf("Min: %d Max: %d\n", min, max);
+    if (temp->left != NULL) {
+      q_push(bqueue, temp->left);
+    }
+
+    if (temp->right != NULL) {
+      q_push(bqueue, temp->right);
+    }
+  }
+
   return;
 }
+#endif
 
 void btree_insert(btree_t **root, int data) {
   if (!*root) {
-    *root = malloc(sizeof(btree_t));
+    *root = (btree_t*)malloc(sizeof(btree_t));
     if (*root == NULL) {
       printf("malloc failed\n");
       return;
@@ -135,7 +200,7 @@ void btree_insert(btree_t **root, int data) {
 }
 
 int main(void) {
-  btree_t *root = NULL;
+  btree_t *n, *root = NULL;
   int i;
 
   btree_insert(&root, 26);
@@ -160,12 +225,21 @@ int main(void) {
   btree_postorder(root);
   printf("\n");
 
-  btree_build_array(root);
+  printf("is binary tree: %s\n",
+         is_binary_tree(root, INT_MIN, INT_MAX) ? "BST" : "Not a BST");
+
+  n = btree_find_node(root, 56);
+  printf("Found: %d\n", n->data);
+
+  root = btree_delete(root, 29);
+  printf("tree after deleted 29:\n");
   btree_inorder(root);
   printf("\n");
 
-  root = btree_delete(root, 29);
+  printf("swapped tree:\n");
+  swap_btree_nodes(root);
   btree_inorder(root);
   printf("\n");
+
   return (0);
 }
