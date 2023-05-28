@@ -27,9 +27,7 @@ int main(void) {
   int len1 = sizeof(s1) / sizeof(s1[0]);
   int len2 = sizeof(s2) / sizeof(s2[0]);
 
-  cout << "Substring was "
-       << (find_matching_substring(s1, s2, len1, len2) ? "found" : "not found")
-       << endl;
+  cout << "Substring was " << (find_matching_substring(s1, s2, len1, len2) ? "found" : "not found") << endl;
 
   return (0);
 }

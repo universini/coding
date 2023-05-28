@@ -18,7 +18,6 @@ int majorityElement(std::vector<int>& v, int s) {
 
 int main(void) {
   std::vector<int> v{2, 1, 2};
-  std::cout << "Majority Element: " << majorityElement(v, v.size())
-            << std::endl;
+  std::cout << "Majority Element: " << majorityElement(v, v.size()) << std::endl;
   return (0);
 }

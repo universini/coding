@@ -21,26 +21,26 @@ using namespace std;
     O(n), where n is the length of the input string.
 */
 int lengthOfLongestSubstring(string s) {
-    int n = s.length();
-    int maxLength = 0;
-    unordered_set<char> seen;
-    int i = 0, j = 0;
-    while (i < n && j < n) {
-        if (seen.find(s[j]) == seen.end()) {
-            seen.insert(s[j]);
-            j++;
-            maxLength = max(maxLength, j - i);
-        } else {
-            seen.erase(s[i]);
-            i++;
-        }
+  int n = s.length();
+  int maxLength = 0;
+  unordered_set<char> seen;
+  int i = 0, j = 0;
+  while (i < n && j < n) {
+    if (seen.find(s[j]) == seen.end()) {
+      seen.insert(s[j]);
+      j++;
+      maxLength = max(maxLength, j - i);
+    } else {
+      seen.erase(s[i]);
+      i++;
     }
-    return maxLength;
+  }
+  return maxLength;
 }
 
 int main() {
-    string s = "abcabcbb";
-    int length = lengthOfLongestSubstring(s);
-    cout << "Length of longest substring without repeating characters: " << length << endl;
-    return 0;
+  string s = "abcabcbb";
+  int length = lengthOfLongestSubstring(s);
+  cout << "Length of longest substring without repeating characters: " << length << endl;
+  return 0;
 }

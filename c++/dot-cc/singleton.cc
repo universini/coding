@@ -10,7 +10,7 @@ class ston {
   void set_name(std::string n) { name = n; }
   std::string get_name(void) { return name; }
 };
-}
+}  // namespace singleton
 
 singleton::ston* singleton::ston::inst = nullptr;
 
@@ -28,11 +28,9 @@ void some_func(void) {
   if (s == nullptr) {
     std::cout << "singleton is nullptr" << std::endl;
   } else {
-    std::cout << "singleton data before (in some_func) : " << s->get_name()
-              << std::endl;
+    std::cout << "singleton data before (in some_func) : " << s->get_name() << std::endl;
     s->set_name(name);
-    std::cout << "singleton data after (in some_func) : " << s->get_name()
-              << std::endl;
+    std::cout << "singleton data after (in some_func) : " << s->get_name() << std::endl;
   }
 }
 
