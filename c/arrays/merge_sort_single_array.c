@@ -78,5 +78,8 @@ int main() {
 
   printf("\nSorted array is \n");
   printArray(arr, arr_size);
+
+  printf("3rd min: %d\n", arr[2]);
+
   return 0;
 }

@@ -7,7 +7,7 @@ class G_Node {
   list<int> *adjLists;
   bool *visited;
 
- public:
+public:
   G_Node(int V);
   void addEdge(int src, int dest);
   void DFS(int vertex);
@@ -32,7 +32,8 @@ void G_Node::DFS(int vertex) {
 
   list<int>::iterator i;
   for (i = adjList.begin(); i != adjList.end(); ++i)
-    if (!visited[*i]) DFS(*i);
+    if (!visited[*i])
+      DFS(*i);
 }
 
 int main() {

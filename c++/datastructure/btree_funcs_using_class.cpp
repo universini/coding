@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -66,6 +67,14 @@ btree_t *find_min(btree_t *root) {
   }
 
   return (root);
+}
+
+int num_nodes(btree_t *root) {
+  if (root == nullptr) {
+    return 0;
+  } else {
+    return 1 + num_nodes(root->left) + num_nodes(root->right);
+  }
 }
 
 void swap_btree(btree_t *root) {
@@ -209,6 +218,24 @@ int range_sum_btree(btree_t *root, int num1, int num2) {
   }
 
   return (sum);
+}
+
+void level_print(btree_t *root) {
+  queue<btree_t *> q;
+  q.push(root);
+
+  while (!q.empty()) {
+    btree_t *temp = q.front();
+    q.pop();
+    cout << temp->data << endl;
+    if (temp->left != nullptr) {
+      q.push(temp->left);
+    }
+
+    if (temp->right != nullptr) {
+      q.push(temp->right);
+    }
+  }
 }
 
 btree_t *range_del_btree(btree_t *root, int num1, int num2) {
@@ -370,6 +397,6 @@ int main(void) {
   cout << "\nCloned tree" << endl;
   nroot = clone_btree(root);
   print_btree(nroot);
-
+  cout << endl;
   return (0);
 }

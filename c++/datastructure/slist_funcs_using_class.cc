@@ -18,6 +18,7 @@ class slist {
     if (!n) return nullptr;
     n->next = nullptr;
     n->data = data;
+    return n;
   }
 
   void insert_node(node **head, int data) {
@@ -102,6 +103,19 @@ class slist {
     node *second = slow->next;
     slow->next = nullptr;
     return second;
+  }
+
+  node *reverse_list(node *head) {
+    node *temp, *rev = NULL;
+
+    while (head != NULL) {
+      temp = head->next;
+      head->next = rev;
+      rev = head;
+      head = temp;
+    }
+
+    return (rev);
   }
 };
 

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string encode_string(const string& str) {
+string encode_string_1(const string& str) {
   string result = "";
   int len = str.length();
   int count = 0;
@@ -28,10 +28,30 @@ string encode_string(const string& str) {
   return result;
 }
 
+string encode_string_2(string str) {
+  int len = str.length();
+  string s = "";
+  long count = 1;
+  char ch;
+
+  for (size_t i = 0; i < len; i++) {
+    if (str[i] == str[i + 1]) {
+      count++;
+    } else {
+      s += to_string(count);
+      s += str[i];
+      count = 1;
+    }
+  }
+
+  return s;
+}
+
 int main(void) {
   string str("aaaaaaaaaaaaaaaaaaabbcdddddeffff");
-  string res = encode_string(str);
-
-  cout << "encoded string: " << res << endl;
+  string res1 = encode_string_1(str);
+  cout << "encoded string: " << res1 << endl;
+  string res2 = encode_string_2(str);
+  cout << "encoded string: " << res2 << endl;
   return 0;
 }

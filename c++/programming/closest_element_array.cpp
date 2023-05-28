@@ -35,4 +35,5 @@ int main() {
   int target = 4;
   cout << "Nearest element of " << target
        << " is: " << getNearestElement(arr, n, target);
+  cout << endl;
 }

@@ -19,24 +19,25 @@ struct node_s {
       cout << h->data << " ";
       h = h->next;
     }
+    cout << endl;
   }
 };
 
 int main(void) {
   struct node_s *h;
-  // struct node_s s;
+  struct node_s s;
 
-  // h = s.get_node(10);
-  // h->next = s.get_node(20);
-  // h->next->next = s.get_node(30);
+  h = s.get_node(10);
+  h->next = s.get_node(20);
+  h->next->next = s.get_node(30);
 
-  // s.show_list(h);
+  s.show_list(h); // by value
 
   h = h->get_node(10);
   h->next = h->get_node(20);
   h->next->next = h->get_node(30);
 
-  h->show_list(h);
+  h->show_list(h); // by reference
 
   return (0);
 }

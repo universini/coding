@@ -19,6 +19,7 @@ class slist {
     if (!n) return nullptr;
     n->next = nullptr;
     n->data = data;
+    return n;
   }
 
   void insert_node(node **head, int data) {
