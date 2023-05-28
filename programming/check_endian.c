@@ -16,5 +16,8 @@ int main(void) {
     printf("Big endian\n");
   }
 
+  unsigned int i = 1;
+  printf("%s endian\n", (*(char *)&i) ? "Little" : "Big");
+
   return (0);
 }
