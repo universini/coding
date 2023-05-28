@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include <limits.h>
+#include <stdio.h>
 
-int first_dup(int a[], int n) {
+int find_repeat_1(int a[], int n) {
   int i, j;
 
   for (i = 0; i < n; i++) {
@@ -15,11 +15,42 @@ int first_dup(int a[], int n) {
   return (-1);
 }
 
-int main(void) {
-  int a[] = {8, 5, 1, 3, 7, 4, 5};
-  int n = sizeof(a) / sizeof(a[0]);
+int find_repeat_2(int arr[], int size) {
+  /*
+    It initializes a hash_map array with zeros,
+    which can accommodate elements up to a certain
+    maximum value (in this example, 100000).
+    The hash_map array is used to keep track of
+    the count of each element encountered.
+  */
+  int hash_map[65535] = {0}; // Initialize the hash_map array with 0
+  int i;
 
-  printf("first dup: %d\n", first_dup(a, n));
+  for (i = 0; i < size; i++) {
+    hash_map[arr[i]]++; // Increment the hash_map of the current element
 
-  return (0);
+    // Check if the current element has been repeated
+    if (hash_map[arr[i]] > 1) {
+      return arr[i]; // Return the first repeating number
+    }
+  }
+
+  return -1; // If no repeating number is found
+}
+
+int main() {
+  int arr[] = {2, 5, 6, 2, 8, 1, 9, 10, 5};
+  int size = sizeof(arr) / sizeof(arr[0]);
+
+  printf("The first repeating number is: %d\n", find_repeat_1(arr, size));
+
+  int repeared_num = find_repeat_2(arr, size);
+
+  if (repeared_num != -1) {
+    printf("The first repeating number is: %d\n", repeared_num);
+  } else {
+    printf("No repeating number found.\n");
+  }
+
+  return 0;
 }
