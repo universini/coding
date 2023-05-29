@@ -1,6 +1,7 @@
 *.o
 a.out
 .*.swp
+.vscode
 template
 client
 server
