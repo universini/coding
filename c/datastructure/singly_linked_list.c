@@ -119,28 +119,30 @@ void reverse_list(node **n) {
   return;
 }
 
-void delete_dup(node **s) {
-  node *t = *s;
+void delete_dup(node **h) {
+  node *t = *h;
   node *n;
+
+  if (t == NULL) return;
 
   while (t->next != NULL) {
     n = t->next;
     if (t->num == n->num) {
       t->next = n->next;
       free(n);
+    } else {
+      t = t->next;
     }
-
-    t = t->next;
   }
 
   return;
 }
 
-void delete_node(node **n, int i) {
-  node *p, *t = *n;
+void delete_node(node **h, int i) {
+  node *p, *t = *h;
 
-  if ((*n)->num == i) {
-    *n = (*n)->next;
+  if ((*h)->num == i) {
+    *h = (*h)->next;
     free(t);
   } else {
     while (t->next != NULL) {
@@ -156,12 +158,12 @@ void delete_node(node **n, int i) {
   return;
 }
 
-void add_node(node **n, int i) {
-  node *t = *n;
+void add_node(node **h, int i) {
+  node *t = *h;
 
-  if (*n == NULL) {
-    *n = malloc(sizeof(node));
-    t = *n;
+  if (*h == NULL) {
+    *h = malloc(sizeof(node));
+    t = *h;
   } else {
     while (t->next != NULL) {
       t = t->next;
@@ -186,14 +188,17 @@ int main(void) {
   }
 
   add_node(&n, i-1); // duplicate entry
+  add_node(&n, i-1); // duplicate entry
+  add_node(&n, i-1); // duplicate entry
   printf("original linked list: \n");
   print_list(n);
 
-  printf("has dup node: %s\n",
-         do_list_has_dup_nodes(n) ? "true" : "false");
+  delete_dup(&n);
+  printf("after duplicates are deleted: \n");
+  print_list(n);
 
   delete_node(&n, i-1); // duplicate entry
-  printf("modified linked list: \n");
+  printf("after deleting last node: \n");
   print_list(n);
 
   reverse_list(&n);
@@ -207,7 +212,10 @@ int main(void) {
   print_list(s);
 
   s = find_merge_point(n, s);
-  if (s) printf("Merge Point: %d\n", s->num);
+  if (s) printf("merge point: %d\n", s->num);
+
+  printf("has dup node: %s\n",
+         do_list_has_dup_nodes(n) ? "true" : "false");
 
   return (0);
 }
