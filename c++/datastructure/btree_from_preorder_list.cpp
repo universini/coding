@@ -23,6 +23,19 @@ bnode_t *get_node(int val) {
   return (node);
 }
 
+/*
+    Construct the root node of BST, which would be the first key in the preorder sequence.
+    Find index i of the first key in the preorder sequence, which is greater than the root node.
+    Recur for the left subtree with keys in the preorder sequence that appears before the i'th index (excluding the first index).
+    Recur for the right subtree with keys in the preorder sequence that appears after the i'th index (including the i'th index).
+
+    Let’s consider the preorder traversal {15, 10, 8, 12, 20, 16, 25} to make the context more clear.
+
+    The first item in the preorder sequence 15 becomes the root node.
+    Since 20 is the first key in the preorder sequence, which greater than the root node,
+    the left subtree consists of keys {10, 8, 12} and the right subtree consists of keys {20, 16, 25}.
+    To construct the complete BST, recursively repeat the above steps for preorder sequence {10, 8, 12} and {20, 16, 25}.
+*/
 bnode_t *bst_build(int a[], int start, int end) {
   bnode_t *root;
   int i;
