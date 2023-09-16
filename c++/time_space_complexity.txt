@@ -1,0 +1,71 @@
+The C++ Standard Template Library (STL) provides several containers,
+each with different time and space complexities for various operations.
+Below is a summary of the time and space complexities for common STL containers.
+
+Common STL Containers:
+
+    Vector:
+        Time Complexity:
+            Access (random): O(1)
+            Insertion/Deletion at the end: O(1) amortized, O(n) worst case
+            Insertion/Deletion in the middle: O(n)
+        Space Complexity: O(n)
+
+    Deque:
+        Time Complexity:
+            Access (random): O(1)
+            Insertion/Deletion at the end or beginning: O(1)
+            Insertion/Deletion in the middle: O(n)
+        Space Complexity: O(n)
+
+    List:
+        Time Complexity:
+            Access (sequential): O(n)
+            Insertion/Deletion: O(1)
+        Space Complexity: O(n)
+
+    Set / Multiset:
+        Time Complexity:
+            Search, Insertion, Deletion: O(log n) on average for balanced trees (e.g., Red-Black Tree), O(1) for unordered set (hash table-based)
+        Space Complexity: O(n)
+
+    Map / Multimap:
+        Time Complexity:
+            Search, Insertion, Deletion: O(log n) on average for balanced trees (e.g., Red-Black Tree), O(1) for unordered map (hash table-based)
+        Space Complexity: O(n)
+
+    Unordered Set / Unordered Multiset:
+        Time Complexity:
+            Search, Insertion, Deletion: O(1) average case, O(n) worst case
+        Space Complexity: O(n)
+
+    Unordered Map / Unordered Multimap:
+        Time Complexity:
+            Search, Insertion, Deletion: O(1) average case, O(n) worst case
+        Space Complexity: O(n)
+
+    Queue (using deque):
+        Time Complexity:
+            Enqueue: O(1)
+            Dequeue: O(1)
+        Space Complexity: O(n)
+
+    Stack (using deque):
+        Time Complexity:
+            Push: O(1)
+            Pop: O(1)
+        Space Complexity: O(n)
+
+Additional Note:
+
+    Priority Queue:
+        Implemented typically as a binary heap.
+        Time Complexity:
+            Insertion: O(log n)
+            Extraction of the highest (or lowest) element: O(log n)
+        Space Complexity: O(n)
+
+The complexities mentioned are based on typical implementations and may vary
+slightly based on the compiler, platform, and specific use cases. It's important
+to understand these complexities to choose the appropriate container for the
+specific requirements of your program.
