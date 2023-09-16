@@ -31,6 +31,16 @@ void insert_btree(btree_t **root, int data) {
   }
 }
 
+/*
+ * Heapifying a binary search tree (BST) typically means reorganizing
+ * the BST to transform it into a binary heap while maintaining the
+ * heap property. A binary heap is a complete binary tree where the
+ * value of each node is greater (for a max-heap) or lesser (for a min-heap)
+ * than the values of its children.
+ * To heapify a BST into a max-heap, you can perform an in-order traversal
+ * of the BST to extract the values in a sorted order and then construct
+ * the max-heap.
+ */
 void replace_bst_preorder(btree_t *root, queue<int> &q) {
   if (!root) return;
 
@@ -92,6 +102,7 @@ int main(void) {
   level_print_btree(root);
   cout << "\nPre-order output:\n";
   preorder_btree(root);
+  cout << endl;
 
   return (0);
 }
