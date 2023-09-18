@@ -20,22 +20,29 @@ std::vector<int> rightSideView(TreeNode* root) {
     q.push(root);
 
     while (!q.empty()) {
-        int levelSize = q.size();
+        // number of nodes at current level
+        int numNodes = q.size();
 
-        for (int i = 0; i < levelSize; ++i) {
-            TreeNode* node = q.front();
+        // std::cout << "level size: " << numNodes << " qsize: " << q.size() << std::endl;
+
+        // Traverse all nodes of current level
+        for (int i = 1; i <= numNodes; ++i) {
+        // for (int i = 0; i < numNodes; ++i) {
+            TreeNode* temp = q.front();
             q.pop();
 
-            if (i == levelSize - 1) {
-                result.push_back(node->val); // Rightmost node at this level
+            if (i == numNodes) {
+            // if (i == numNodes - 1) {
+                // Push the rightmost node at this level
+                result.push_back(temp->val);
             }
 
-            if (node->left) {
-                q.push(node->left);
+            if (temp->left) {
+                q.push(temp->left);
             }
 
-            if (node->right) {
-                q.push(node->right);
+            if (temp->right) {
+                q.push(temp->right);
             }
         }
     }
