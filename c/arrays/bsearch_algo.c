@@ -5,7 +5,8 @@ int bsearch(int a[], int n, int max) {
 
   while (min <= max) {
     int mid;
-    mid = (min + max) / 2;
+    // mid = (min + max) / 2;
+    mid = min + (max - min) / 2;
 
     if (n < a[mid]) {
       max = mid - 1;
