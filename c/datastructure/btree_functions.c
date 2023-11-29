@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <stdbool.h>

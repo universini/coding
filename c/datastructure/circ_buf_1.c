@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <memory.h>
+#include <stdlib.h>
 
 struct queue {
   unsigned int tail;      // current tail

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define MAX_ALPHA 26
@@ -58,6 +58,8 @@ trie_node_t *search_trie(trie_node_t *n, const char *s) {
   if (n && n->is_leaf_node) {
     return (n);
   }
+
+  return NULL;
 }
 
 int main(void) {
