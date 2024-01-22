@@ -23,7 +23,6 @@ void pali_check_1(char s[]) {
 
 int pali_check_2(char s[]) {
   int i, j = strlen(s) - 1;
-  int flag = 0;
 
   for (i = 0; i < j; i++, j--) {
     if (s[i] == s[j]) {
