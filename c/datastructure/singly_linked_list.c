@@ -101,6 +101,22 @@ int do_list_has_dup_nodes(node *n) {
   return (0);
 }
 
+// Function to reverse the linked list
+node* reverse_list2(node* head) {
+    node* prev = NULL;
+    node* current = head;
+    node* next = NULL;
+
+    while (current != NULL) {
+        next = current->next;  // Save the next node
+        current->next = prev;   // Reverse the link
+        prev = current;        // Move one step forward
+        current = next;        // Move one step forward
+    }
+
+    return prev;  // The new head of the reversed list
+}
+
 void reverse_list(node **n) {
   node *r, *s, *q;
 
