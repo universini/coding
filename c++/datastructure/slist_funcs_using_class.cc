@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -91,7 +92,7 @@ class slist {
     }
   }
 
-  node *split_list(node *head) {
+  node* split_list(node *head) {
     node *slow = head;
     node *fast = head;
 
@@ -105,10 +106,10 @@ class slist {
     return second;
   }
 
-  node *reverse_list(node *head) {
-    node *temp, *rev = NULL;
+  node* reverse_list(node *head) {
+    node *temp, *rev = nullptr;
 
-    while (head != NULL) {
+    while (head != nullptr) {
       temp = head->next;
       head->next = rev;
       rev = head;
@@ -116,6 +117,28 @@ class slist {
     }
 
     return (rev);
+  }
+
+  node* reverse_using_stack(node *head) {
+    stack<node *> stack_head;
+    node *temp = head;
+
+    while(temp->next != nullptr) {
+      stack_head.push(temp);
+      temp = temp->next;
+    } // push
+
+    head = temp;
+
+    while(!stack_head.empty()) {
+      node *top = stack_head.top();
+      temp->next = top;
+      temp = temp->next;
+      stack_head.pop();
+    } // pop
+
+    temp->next = nullptr;
+    return head;
   }
 };
 
@@ -145,6 +168,10 @@ int main(void) {
   sl.delete_all(&head, 6);
   cout << " List After Deleting All 6s : ";
   sl.print_list(head);
+  cout << endl;
+  node *reversed = sl.reverse_using_stack(head);
+  cout << "Singly Linked List Reversed: ";
+  sl.print_list(reversed);
   cout << endl;
   return (0);
 }
