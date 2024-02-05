@@ -33,6 +33,28 @@ bool detectCycle(Node* head) {
   return false;
 }
 
+bool hasCycle(Node* head) {
+    if (head == nullptr || head->next == nullptr) {
+        return false;  // No cycle in an empty list or a list with only one node
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+
+    // Move slow one step and fast two steps at a time
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        // If there is a cycle, the two pointers will meet at some point
+        if (slow == fast) {
+            return true;
+        }
+    }
+
+    return false;  // No cycle found
+}
+
 int main() {
   int keys[] = {1, 2, 3, 4, 5};
   int n = sizeof(keys) / sizeof(keys[0]);
