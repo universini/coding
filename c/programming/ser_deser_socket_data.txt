@@ -1,0 +1,48 @@
+struct student {
+  char name[20];
+  float gpa;
+  address *addr;
+};
+
+struct address {
+  char street[20];
+  char city[20];
+  char country[20];
+};
+
+serialized_student serialize(const student& st)
+{
+    serialized_student res;
+    res.length = strlen(st.name) + strlen(st.addr->city) +
+                 strlen(st.addr->country) + strlen(st.addr->street) +
+                 4 /*zero terminators*/ + sizeof(st.gpa);
+    res.data = new char[res.length];
+    memset(res.data, 0, res.length);
+    char* tmp = res.data;
+    strcpy(tmp, st.name);
+    tmp += strlen(st.name) + 1;
+    strcpy(tmp, st.addr->city);
+    tmp += strlen(st.addr->city) + 1;
+    strcpy(tmp, st.addr->country);
+    tmp += strlen(st.addr->country) + 1;
+    strcpy(tmp, st.addr->street);
+    tmp += strlen(st.addr->street) + 1;
+    *(float*)tmp = st.gpa;
+    return res;
+}
+student deserialize(const serialized_student& st)
+{
+    student res;
+    res.addr = new address();
+    char* tmp = st.data;
+    strcpy(res.name, tmp);
+    tmp += strlen(tmp) + 1;
+    strcpy(res.addr->city, tmp);
+    tmp += strlen(tmp) + 1;
+    strcpy(res.addr->country, tmp);
+    tmp += strlen(tmp) + 1;
+    strcpy(res.addr->street, tmp);
+    tmp += strlen(tmp) + 1;
+    res.gpa = *(float*)tmp;
+    return res;
+}
