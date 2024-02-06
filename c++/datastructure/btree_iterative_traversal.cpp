@@ -65,7 +65,7 @@ void print_preorder_iterative(Node *root) {
 
     // right child is pushed first so that left child
     // is processed first in a FIFO order
-    if (curr->right) stack.push(curr->right);
+    if (curr->right) .push(curr->right);
     if (curr->left) stack.push(curr->left);
   }
 
