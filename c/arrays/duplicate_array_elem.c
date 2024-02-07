@@ -4,7 +4,7 @@
 int main(void) {
   int a[] = {1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10};
   int n = sizeof(a) / sizeof(a[0]);
-  int sum1 = n * (n - 1) / 2;  //-1 for 1 duplicate
+  int sum1 = n * (n - 1) / 2;  //-1 for 1 duplicate, n=n+1 here
   int sum2 = 0;
   int i;
 

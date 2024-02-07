@@ -6,7 +6,7 @@ int main(void) {
   int sum = 0;
   int i;
 
-  sum = (n + 1) * (n + 2) / 2;  //+1 for a missing num from n*(n+1)/2
+  sum = (n + 1) * (n + 2) / 2;  //+1 for a missing num from n*(n+1)/2, n=n-1 here
   for (i = 0; i < n; i++) {
     sum -= a[i];
   }

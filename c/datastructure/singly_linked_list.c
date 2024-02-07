@@ -87,6 +87,27 @@ node *split_half(node *s) {
   return (second);
 }
 
+node *find_middle(node *s) {
+  node *slow = s;
+  node *fast = s;
+
+  if (s == NULL) return NULL;
+
+#ifdef OPTION_OLD
+  while (fast->next->next != NULL) {
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+#endif
+
+  while (fast != NULL && fast->next != NULL) {
+      slow = slow->next;
+      fast = fast->next->next;
+  }
+
+  return (slow);
+}
+
 int do_list_has_dup_nodes(node *n) {
   node *t1 = n;
   node *t2 = n->next;
