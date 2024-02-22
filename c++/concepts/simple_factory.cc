@@ -60,6 +60,14 @@ Battleship* CreateShipFactory(ShipType type){
     return pShip;
 }
 
+int main() {
+    Battleship* d = CreateShipFactory(ShipType::Destroyer);
+    Battleship* c = CreateShipFactory(ShipType::Carrier);
+    d->Fire();
+    c->Fire();
+    return 0;
+}
+
 /////////////////////////////////////////////////////////////////
 // Library classes
 class Vehicle {
