@@ -5,6 +5,62 @@
 #include <iostream>
 using namespace std;
 
+// Factory Method is a creational design pattern that provides an interface for
+// creating objects in a superclass, but allows subclasses to alter the type of
+// objects that will be created. Factory method simply as a function that takes
+// care of the creation of class objects while abstracting the implementation details.
+class Battleship {
+public:
+    Battleship() {
+        std::cout << "Battleship Created" << std::endl;
+    }
+    virtual void Fire() = 0;
+    virtual void Steer() = 0;
+};
+
+class Destroyer : public Battleship {
+public:
+    Destroyer(){
+        std::cout << "Destroyer Created" << std::endl;
+    }
+    void Fire() override {
+        std::cout << "Destoryer Fire" << std::endl;
+    }
+    void Steer() override {
+        std::cout << "Destroyer Steer" << std::endl;
+    }
+};
+
+class Carrier : public Battleship {
+public:
+    Carrier(){
+        std::cout << "Carrier Created" << std::endl;
+    }
+    void Fire() override {
+        std::cout << "Carrier Fire" << std::endl;
+    }
+    void Steer() override {
+        std::cout << "Carrier Steer" << std::endl;
+    }
+};
+
+enum class ShipType{
+    Destroyer,
+    Carrier,
+};
+
+Battleship* CreateShipFactory(ShipType type){
+    Battleship* pShip = nullptr;
+    if(type == ShipType::Carrier) {
+        pShip = new Carrier();
+    }
+    else if(type == ShipType::Destroyer) {
+        pShip = new Destroyer();
+    }
+    return pShip;
+}
+
+/////////////////////////////////////////////////////////////////
 // Library classes
 class Vehicle {
 public:
