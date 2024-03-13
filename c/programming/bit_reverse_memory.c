@@ -30,8 +30,21 @@ void reverse_memory_bits(void *memory, size_t size) {
     }
 }
 
+void reverseBits(char* block, size_t size) {
+    for (size_t i = 0; i < size; ++i) {
+        char byte = block[i];
+        char reversedByte = 0;
+
+        for (int j = 0; j < 8; ++j) {
+            reversedByte |= ((byte >> j) & 1) << (7 - j);
+        }
+
+        block[i] = reversedByte;
+    }
+}
+
 int main() {
-    size_t size = 4; // Example size of memory block in bytes
+    size_t size = 3; // Example size of memory block in bytes
     unsigned char *memory = (unsigned char *)malloc(size);
     if (memory == NULL) {
         printf("Memory allocation failed\n");
@@ -41,8 +54,8 @@ int main() {
     // Fill the memory block with example data
     memory[0] = 0x80; // 1000 0000
     memory[1] = 0x00; // 0000 0000
-    memory[2] = 0x56;
-    memory[3] = 0x78;
+    memory[2] = 0x01;
+    // memory[3] = 0x78;
 
     printf("Original memory content:\n");
     for (size_t i = 0; i < size; i++) {
@@ -51,7 +64,7 @@ int main() {
     printf("\n");
 
     // Reverse the bits of the entire memory block
-    reverse_memory_bits(memory, size);
+    reverseBits(memory, size);
 
     printf("Memory content after bit reversal:\n");
     for (size_t i = 0; i < size; i++) {
