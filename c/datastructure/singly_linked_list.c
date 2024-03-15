@@ -220,11 +220,12 @@ int main(void) {
   node *s, *n = NULL;
   int i;
 
+  add_node(&n, 1); // duplicate entry
+
   for (i = 1; i <= 14; i++) {
     add_node(&n, i);
   }
 
-  add_node(&n, i-1); // duplicate entry
   add_node(&n, i-1); // duplicate entry
   add_node(&n, i-1); // duplicate entry
   printf("original linked list: \n");
