@@ -5,7 +5,8 @@
 using namespace std;
 
 vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> indicesMap; // Map to store indices of elements
+    // Map to store indices of elements
+    unordered_map<int, int> indicesMap;
     vector<int> result;
 
     for (int i = 0; i < nums.size(); ++i) {
@@ -25,14 +26,35 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return result;
 }
 
+vector<int> return_indicies(vector<int>& arr, int target) {
+    int sum, start = 0, end = arr.size() - 1;
+    vector<int> result;
+
+    while (start <= end) {
+        sum = arr[start] + arr[end];
+
+        if (sum > target)
+            end -= 1;
+        else if (sum < target)
+            start += 1;
+        else {
+            result.push_back(start);
+            result.push_back(end);
+            break;
+        }
+    }
+    return result;
+}
+
 int main() {
     vector<int> nums = {2, 7, 11, 15};
     int target = 9;
 
-    vector<int> indices = twoSum(nums, target);
+    vector<int> indices = return_indicies(nums, target);
 
     if (!indices.empty()) {
-        cout << "Indices of the two numbers: " << indices[0] << " and " << indices[1] << endl;
+        cout << "Indices of the two numbers: "
+             << indices[0] << " and " << indices[1] << endl;
     } else {
         cout << "No two numbers add up to the target." << endl;
     }
