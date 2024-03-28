@@ -38,6 +38,11 @@ vector<string> return_n_dirs(vector<row>& rows, int n)
         return a.second > b.second;
     });
 
+    // for (auto& v: vec)
+    // {
+    //     cout << v.first << ":" << v.second << endl;
+    // }
+
     for (int i=0; i < n; ++i)
     {
         result.push_back(vec[i].first);
@@ -51,7 +56,7 @@ int main()
     vector<row> rows{
                         {"file1", 200, {"dir1", "dir2", "dir3"}},
                         {"file2", 100, {"dir2", "dir3"}},
-                        {"file3", 150, {"dir3"}},
+                        {"file3", 150, {"dir1", "dir3"}},
                         {"file4", 200, {"dir3"}},
                         {"file5", 100, {}}
                     };
@@ -59,7 +64,7 @@ int main()
     vector<string> dirs = return_n_dirs(rows, 2);
 
     for (const auto& dir: dirs)
-        cout << " " << dir << " " << endl;
+        cout << dir << endl;
 
     return 0;
 }
