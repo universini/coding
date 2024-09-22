@@ -26,9 +26,8 @@ node_t *getnode(int n)
   node_t *t;
 
   t = malloc(sizeof(node_t));
-  if (!t) {
+  if (!t)
     return (NULL);
-  }
 
   t->data = n;
   t->next = NULL;
