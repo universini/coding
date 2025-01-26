@@ -25,14 +25,12 @@ int pali_check_2(char s[]) {
   int i, j = strlen(s) - 1;
 
   for (i = 0; i < j; i++, j--) {
-    if (s[i] == s[j]) {
-      continue;
-    } else {
-      return (0);
+    if (s[i] != s[j]) {
+      return 0;
     }
   }
 
-  return (1);
+  return 1;
 }
 
 int main(void) {
