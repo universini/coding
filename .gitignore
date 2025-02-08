@@ -5,3 +5,4 @@ a.out
 template
 client
 server
+__pycache__/
